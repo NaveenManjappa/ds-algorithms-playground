@@ -61,5 +61,5 @@ def merge(left,right):
         return results
 
 
-my_list = [5,2,1,3,0,9,5,6]
+my_list = [64, 34, 34,25, 12, 22, 11, 90]
 print(merge_sort(my_list))
