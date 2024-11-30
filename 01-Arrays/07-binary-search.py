@@ -31,8 +31,6 @@ def binary_search(array,search_el):
     return element_found
 
 
-
-
 my_list = [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
 is_found = binary_search(my_list,231)
 print(f"Element found: {is_found}")
