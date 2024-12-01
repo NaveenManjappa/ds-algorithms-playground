@@ -18,8 +18,6 @@ def remove_duplicates(array):
 
         reader_pointer += 1
 
-
-
     print(array)
     return writer_pointer +1
 
