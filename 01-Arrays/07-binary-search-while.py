@@ -2,9 +2,6 @@ def binary_search(array,target):
     if len(array) < 1:
         return -1
 
-    if len(array) == 1:
-        return 0 if array[0] == target else -1
-
     left,right = 0,len(array)-1
 
     while left <= right:
