@@ -1,4 +1,11 @@
+from operator import indexOf
 from typing import Optional
+
+class Node:
+    def __init__(self,value,next_node):
+        self.value = value
+        self.next_node = next_node
+
 class LinkedList:
 
     def __init__(self):
@@ -25,69 +32,56 @@ class LinkedList:
             self.last = node
 
     def delete_first(self):
-        self.first = self.first.next_node
+        if self.first is None:
+            raise IndexError("Cannot remove from an Empty list")
+
+        if self.first == self.last:
+            self.first = self.last = None
+            return
+
+        second = self.first.next_node
+        self.first.next_node = None
+        self.first = second
 
     def delete_last(self):
-        node = self.first
-        if node.next_node is None:
-            self.first = None
-            self.last = None
+        if self.first is None:
+            raise IndexError("Cannot remove from an Empty list")
 
-        while node.next_node is not None and node.next_node != self.last:
-            node = node.next_node
+        if self.first == self.last:
+            self.first = self.last = None
+            return
 
-        self.last = node
-        node.next_node = None
+        previous = self._get_previous_node(self.last)
+        last = previous
+        last.next_node = None
 
-    def contains(self,value):
-        node = self.first
+    def _get_previous_node(self,node:Node):
+        current = self.first
+        while current is not None:
+            if current.next_node == node:
+                return current
+            else:
+                current=current.next_node
+        return None
 
-        if self.first.value == value or self.last.value == value:
-            return True
+    def contains(self,item):
+        return self.index_of(item) != -1
 
-        if self.first.next_node is None:
-            return False
-
-        while node.next_node is not None:
-            node = node.next_node
-            if node.value == value:
-                return True
-
-        return False
-
-    def index_of(self,value):
-        node = self.first
-
-        if self.first.value == value:
-            return 0
-
+    def index_of(self,item):
         index = 0
-        while node.next_node is not None:
-            node = node.next_node
-            index += 1
-            if node.value == value:
+        current = self.first
+        while current is not None:
+            if current.value == item:
                 return index
-
-        if self.last.value == value:
+            current = current.next_node
             index += 1
-            return index
 
         return -1
 
     def display(self):
-        node = self.first
+        current = self.first
 
-        if node.next_node is None:
-            print(f"Elements are: {node.value} ")
-            return
-
-        while node.next_node is not None:
-            print(f"{ node.value}",end=" ")
-            node = node.next_node
-
-        print(self.last.value)
-
-class Node:
-    def __init__(self,value,next_node):
-        self.value = value
-        self.next_node = next_node
+        while current is not None:
+            print(f"{ current.value}",end=" ")
+            current = current.next_node
+        print()
