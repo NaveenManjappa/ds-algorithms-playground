@@ -1,4 +1,5 @@
 from operator import indexOf
+from tokenize import endpats
 from typing import Optional
 
 class Node:
@@ -95,21 +96,51 @@ class LinkedList:
         return array
 
     def reverse(self):
+        if self.first is None:
+            return
+
         current = self.first
         previous = None
-
         while current is not None:
             next_node = current.next_node
             current.next_node = previous
             previous = current
             current = next_node
 
+        self.last = self.first
+        self.last.next_node = None
         self.first = previous
+
+    def get_kth_node_from_end(self, k):
+
+        if k <0 or k > self.list_size() or self.first is None:
+            return
+        # 1. Need two pointers that are k-1 distance apart
+        # 2. Traverse until the second pointer reaches the end
+        # 3. Return the value of first pointer
+
+        first_pointer = self.first
+        second_pointer = self.first
+        index =1
+
+        # for i in range(0,k-1):
+        #     second_pointer = second_pointer.next_node
+        #     if second_pointer is None: # this indicates k is larger than size of the linked list
+        #         return
+
+        while second_pointer != self.last:
+            if index < k:
+                second_pointer = second_pointer.next_node
+            else:
+                second_pointer = second_pointer.next_node
+                first_pointer = first_pointer.next_node
+            index += 1
+
+        return first_pointer.value
 
 
     def display(self):
         current = self.first
-
         while current is not None:
             print(f"{ current.value}",end=" ")
             current = current.next_node
