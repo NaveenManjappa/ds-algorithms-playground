@@ -1,3 +1,4 @@
+from calendar import firstweekday
 from operator import indexOf
 from tokenize import endpats
 from typing import Optional
@@ -137,6 +138,20 @@ class LinkedList:
             index += 1
 
         return first_pointer.value
+
+    def floyd_cycle_algorithm(self):
+        if not self.first or not self.first.next_node:
+            return False
+
+        hare, tortoise = self.first
+
+        while hare and hare.next_node:
+            hare = hare.next_node.next_node
+            tortoise = tortoise.next_node
+            if hare == tortoise:
+                return True
+
+        return False
 
 
     def display(self):

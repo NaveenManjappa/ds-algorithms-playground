@@ -1,5 +1,4 @@
 def find_maximum(array,window_size):
-
     if window_size <=0:
         return []
 
