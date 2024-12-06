@@ -153,6 +153,23 @@ class LinkedList:
 
         return False
 
+    def find_floyd_cycle_start(self):
+        if not self.first or not self.first.next_node:
+            return None
+
+        hare, tortoise = self.first
+
+        while hare and hare.next_node:
+            hare = hare.next_node.next_node
+            tortoise = tortoise.next_node
+            if hare == tortoise:
+                tortoise = self.first
+                while hare != tortoise:
+                    hare = hare.next_node
+                    tortoise = tortoise.next_node
+                return tortoise
+
+        return None
 
     def display(self):
         current = self.first
