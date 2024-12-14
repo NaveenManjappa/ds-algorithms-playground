@@ -1,20 +1,28 @@
 class Stack:
     def __init__(self):
-        self.items = []
+        self.items = [0] * 5
+        self.count = 0
 
     def push(self,item):
-        self.items.append(item)
+        if self.count == len(self.items):
+            raise Exception("Stack is full")
+        self.items[self.count] = item
+        self.count += 1
 
     def is_empty(self):
-        return len(self.items) == 0
+        return self.count == 0
 
     def pop(self):
-            if not self.is_empty():
-                return self.items.pop()
-            return None
+        if self.count == 0:
+            raise Exception("Stack is empty")
+
+        self.count -= 1
 
     def peek(self):
-        return self.items[-1]
+        if self.count == 0:
+            raise Exception("Stack is empty!")
+
+        return self.items[self.count-1]
 
     def display(self):
-        print(f"Array: {self.items}")
+        print(f"Stack: {self.items[:self.count]}")

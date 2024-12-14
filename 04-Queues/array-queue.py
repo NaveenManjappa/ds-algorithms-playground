@@ -17,7 +17,7 @@ class ArrayQueue:
             raise Exception("Queue is Empty")
 
         item = self.queue[self.front]
-        self.queue[self.front]=0
+        self.queue[self.front] = 0
         self.front = (self.front + 1) % len(self.queue)
         self.count -= 1
         return item
