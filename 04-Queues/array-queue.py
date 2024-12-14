@@ -1,5 +1,5 @@
 class ArrayQueue:
-    front, rear,count = 0,0,0
+    front,rear,count = 0,0,0
 
     def __init__(self,length):
         self.queue = [0] * length
