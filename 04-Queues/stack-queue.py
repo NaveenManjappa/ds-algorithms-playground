@@ -12,7 +12,6 @@ class StackQueue:
             raise Exception("Queue is empty")
 
         self.move_stack1_to_stack2()
-
         return self.stack2.pop()
 
     def move_stack1_to_stack2(self):
