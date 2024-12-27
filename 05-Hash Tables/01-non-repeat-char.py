@@ -1,5 +1,5 @@
 def find_non_repeat(my_word):
-    counts = {}
+    counts = dict()
     for ch in my_word:
         if ch in counts.keys():
             counts[ch] = counts[ch]+1
@@ -10,4 +10,5 @@ def find_non_repeat(my_word):
             return key
 
 word = "A Green Apple"
+print(hash(word))
 print(find_non_repeat(word))
